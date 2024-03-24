@@ -86,7 +86,12 @@ public class MuaHang extends JFrame {
 			}
 		});
 	}
-
+	
+	public void logOut() {
+		new Login().setVisible(true);
+		this.setVisible(false);
+	}
+	
 	public void insertHoaDon() {
 		try {
 			con = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-PC1DS6GI\\MSSQLSERVER03:1433;encrypt=true;trustServerCertificate=true;databaseName=QLBanSach;integratedSecurity=true");
@@ -95,18 +100,14 @@ public class MuaHang extends JFrame {
 			Pst.setString(1, txtTenKhachHang.getText());
 			Pst.setString(2, java.time.LocalDate.now().toString());
 			Pst.setInt(3, tongTien);
-			int row = Pst.executeUpdate()
-;	
-			JOptionPane.showMessageDialog(contentPane, "Sản phẩm đã được thêm");
+			int row = Pst.executeUpdate();	
 			con.close();
 			ShowDanhSachSanPham();
 		} catch (SQLException e1) {
 			JOptionPane.showMessageDialog(contentPane, e1);
 		}
 	}
-	/**
-	 * Create the frame.
-	 */
+	
 	public MuaHang() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 626);
@@ -286,6 +287,12 @@ public class MuaHang extends JFrame {
 		txtTenKhachHang.setEditable(false);
 		ShowDanhSachSanPham();
 		JLabel lblLogOut = new JLabel("Log out");
+		lblLogOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				logOut();
+			}
+		});
 		lblLogOut.setBounds(10, 535, 129, 40);
 		lblLogOut.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panel.add(lblLogOut);

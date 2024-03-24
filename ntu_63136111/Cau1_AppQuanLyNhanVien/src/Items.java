@@ -67,6 +67,11 @@ public class Items extends JFrame {
 		
 	}
 	
+	public void logOut() {
+		new Login().setVisible(true);
+		this.setVisible(false);
+	}
+	
 	private void FilterSanPham() {
 		try {
 			String[] arr = {"Mã sản phẩm", "Tên sản phẩm", "Thể loại", "Giá"};
@@ -88,9 +93,7 @@ public class Items extends JFrame {
 		}
 		
 	}
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -105,9 +108,7 @@ public class Items extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	
 	public Items() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 626);
@@ -315,6 +316,12 @@ public class Items extends JFrame {
 		panel.add(lblMuaHng);
 		
 		JLabel lblLogOut = new JLabel("Log out");
+		lblLogOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				logOut();
+			}
+		});
 		lblLogOut.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblLogOut.setBounds(10, 535, 129, 40);
 		panel.add(lblLogOut);
