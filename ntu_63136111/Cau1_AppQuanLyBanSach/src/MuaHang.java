@@ -50,7 +50,7 @@ public class MuaHang extends JFrame {
 		txtGia.setText("");
 		txtSoLuong.setText("");
 	}
-	
+
 	private void ShowDanhSachSanPham() {
 		try {
 			itemList.removeAll();
@@ -275,13 +275,10 @@ public class MuaHang extends JFrame {
 		panel_1.add(lblQunLSn_1_1_1_1_3);
 		
 		txtTenKhachHang = new JTextField();
-		txtTenKhachHang.setText("User1");
 		txtTenKhachHang.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtTenKhachHang.setEditable(false);
 		txtTenKhachHang.setColumns(10);
 		txtTenKhachHang.setBounds(198, 106, 150, 25);
 		panel_1.add(txtTenKhachHang);
-		txtTenKhachHang.setEditable(false);
 		ShowDanhSachSanPham();
 		JLabel lblLogOut = new JLabel("Log out");
 		lblLogOut.addMouseListener(new MouseAdapter() {

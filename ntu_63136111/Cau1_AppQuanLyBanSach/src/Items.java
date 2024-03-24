@@ -153,8 +153,8 @@ public class Items extends JFrame {
 		panel_1.add(lblQunLSn_1_1_1_1_2);
 		
 		JComboBox cbTheLoai = new JComboBox();
-		cbTheLoai.setBounds(389, 114, 120, 25);
-		cbTheLoai.setModel(new DefaultComboBoxModel(new String[] {"Tình cảm", "Hành động"}));
+		cbTheLoai.setBounds(389, 114, 200, 25);
+		cbTheLoai.setModel(new DefaultComboBoxModel(new String[] {"Hành động", "Tâm lý", "Kinh dị", "Trinh thám", "Tình cảm", "Thiếu nhi", "Chính trị – pháp luật", "Khoa học viễn tưởng", "Tôn giáo"}));
 		cbTheLoai.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel_1.add(cbTheLoai);
 		

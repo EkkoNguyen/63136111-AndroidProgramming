@@ -11,15 +11,24 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtTK;
-	private JTextField txtMK;
-
+	Connection con = null;
+	PreparedStatement St = null, St1 = null;
+	ResultSet Rs = null, Rs1 = null;
+	private JPasswordField txtMK;
+	
 	public void login() {
 		new Items().setVisible(true);
 		this.setVisible(false);
@@ -61,28 +70,36 @@ public class Login extends JFrame {
 		contentPane.add(txtTK);
 		txtTK.setColumns(10);
 		
-		txtMK = new JTextField();
-		txtMK.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		txtMK.setColumns(10);
-		txtMK.setBounds(213, 207, 228, 43);
-		contentPane.add(txtMK);
-		
 		JButton btnLogin = new JButton("Đăng nhập");
 		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {			
 				if(txtTK.getText().isEmpty() || txtMK.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Bạn chưa nhập tài khoản hoặc mật khẩu");
-				}else if(txtTK.getText().equals("Admin") && txtMK.getText().equals("123")){
-					login();				
-				}else {
-					JOptionPane.showMessageDialog(contentPane, "Tài khoản hoặc mật khẩu không đúng");
-					txtMK.setText("");
-					txtTK.setText("");
+				}else{
+					try {
+						con = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-PC1DS6GI\\MSSQLSERVER03:1433;encrypt=true;trustServerCertificate=true;databaseName=QLBanSach;integratedSecurity=true");
+						St = con.prepareStatement("select * from TaiKhoan where TaiKhoan = '"+txtTK.getText().toString()+"' and MatKhau = '"+txtMK.getText().toString()+"'");
+						Rs= St.executeQuery();
+						if(Rs.next()) {
+							login();
+							JOptionPane.showMessageDialog(contentPane, "Login thành công");
+						}else {
+							JOptionPane.showMessageDialog(contentPane, "Tài khoản hoặc mật khẩu không đúng");
+							txtMK.setText("");
+							txtTK.setText("");
+						}
+					} catch (SQLException e1) {
+						
+					}				
 				}
 			}
 		});
 		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnLogin.setBounds(184, 283, 167, 43);
 		contentPane.add(btnLogin);
+		
+		txtMK = new JPasswordField();
+		txtMK.setBounds(213, 209, 228, 39);
+		contentPane.add(txtMK);
 	}
 }
