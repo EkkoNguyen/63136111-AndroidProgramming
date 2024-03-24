@@ -14,6 +14,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 
 import javax.swing.JTextField;
@@ -40,6 +43,7 @@ public class MuaHang extends JFrame {
 	PreparedStatement St = null, St1 = null;
 	ResultSet Rs = null, Rs1 = null;
 	private JTextField txtTongTien;
+	private JTextField txtTenKhachHang;
 	
 	private void clear() {
 		txtTen.setText("");
@@ -83,6 +87,23 @@ public class MuaHang extends JFrame {
 		});
 	}
 
+	public void insertHoaDon() {
+		try {
+			con = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-PC1DS6GI\\MSSQLSERVER03:1433;encrypt=true;trustServerCertificate=true;databaseName=QLBanSach;integratedSecurity=true");
+			PreparedStatement Pst = con.prepareStatement("insert into HoaDon values(?,?,?)");
+			
+			Pst.setString(1, txtTenKhachHang.getText());
+			Pst.setString(2, java.time.LocalDate.now().toString());
+			Pst.setInt(3, tongTien);
+			int row = Pst.executeUpdate()
+;	
+			JOptionPane.showMessageDialog(contentPane, "Sản phẩm đã được thêm");
+			con.close();
+			ShowDanhSachSanPham();
+		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(contentPane, e1);
+		}
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -219,6 +240,16 @@ public class MuaHang extends JFrame {
 		hoaDon.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		JButton btnInHD = new JButton("In hóa đơn");
+		btnInHD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					insertHoaDon();
+					hoaDon.print();
+				}catch (Exception e1) {
+					
+				}
+			}
+		});
 		btnInHD.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnInHD.setBounds(520, 533, 200, 30);
 		panel_1.add(btnInHD);
@@ -229,7 +260,6 @@ public class MuaHang extends JFrame {
 		panel_1.add(lblQunLSn_1_1_1_1_1);
 		txtTen.setEditable(false);
 		txtGia.setEditable(false);
-		
 		JLabel lblNewLabel_1 = new JLabel("Tổng tiền:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblNewLabel_1.setBounds(488, 485, 100, 30);
@@ -240,6 +270,20 @@ public class MuaHang extends JFrame {
 		txtTongTien.setColumns(10);
 		txtTongTien.setBounds(593, 490, 150, 25);
 		panel_1.add(txtTongTien);
+		
+		JLabel lblQunLSn_1_1_1_1_3 = new JLabel("Tên khách hàng:");
+		lblQunLSn_1_1_1_1_3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblQunLSn_1_1_1_1_3.setBounds(198, 74, 200, 22);
+		panel_1.add(lblQunLSn_1_1_1_1_3);
+		
+		txtTenKhachHang = new JTextField();
+		txtTenKhachHang.setText("User1");
+		txtTenKhachHang.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtTenKhachHang.setEditable(false);
+		txtTenKhachHang.setColumns(10);
+		txtTenKhachHang.setBounds(198, 106, 150, 25);
+		panel_1.add(txtTenKhachHang);
+		txtTenKhachHang.setEditable(false);
 		ShowDanhSachSanPham();
 		JLabel lblLogOut = new JLabel("Log out");
 		lblLogOut.setBounds(10, 535, 129, 40);
