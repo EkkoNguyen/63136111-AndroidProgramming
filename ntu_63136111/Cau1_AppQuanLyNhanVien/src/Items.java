@@ -72,6 +72,16 @@ public class Items extends JFrame {
 		this.setVisible(false);
 	}
 	
+	public void muaHang() {
+		new MuaHang().setVisible(true);
+		this.setVisible(false);
+	}
+	
+	public void xemHoaDon() {
+		new DanhSachHoaDon().setVisible(true);
+		this.setVisible(false);
+	}
+	
 	private void FilterSanPham() {
 		try {
 			String[] arr = {"Mã sản phẩm", "Tên sản phẩm", "Thể loại", "Giá"};
@@ -93,21 +103,6 @@ public class Items extends JFrame {
 		}
 		
 	}
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Items frame = new Items();
-					frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	
 	public Items() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -305,14 +300,16 @@ public class Items extends JFrame {
 		btnReset.setBounds(563, 270, 85, 40);
 		panel_1.add(btnReset);
 		ShowDanhSachSanPham();
-		JLabel lblNewLabel = new JLabel("Sản phẩm");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel.setBounds(10, 75, 129, 40);
-		panel.add(lblNewLabel);
 		
 		JLabel lblMuaHng = new JLabel("Mua hàng");
+		lblMuaHng.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				muaHang();
+			}
+		});
 		lblMuaHng.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblMuaHng.setBounds(10, 137, 129, 40);
+		lblMuaHng.setBounds(10, 83, 129, 40);
 		panel.add(lblMuaHng);
 		
 		JLabel lblLogOut = new JLabel("Log out");
@@ -325,5 +322,16 @@ public class Items extends JFrame {
 		lblLogOut.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblLogOut.setBounds(10, 535, 129, 40);
 		panel.add(lblLogOut);
+		
+		JLabel lblXemHan = new JLabel("Xem hóa đơn");
+		lblXemHan.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				xemHoaDon();
+			}
+		});
+		lblXemHan.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblXemHan.setBounds(10, 150, 129, 40);
+		panel.add(lblXemHan);
 	}
 }

@@ -5,36 +5,26 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtTK;
+	private JTextField txtMK;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public void login() {
+		new Items().setVisible(true);
+		this.setVisible(false);
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 556, 388);
@@ -65,19 +55,34 @@ public class Login extends JFrame {
 		lblMtKhu.setBounds(70, 209, 114, 29);
 		contentPane.add(lblMtKhu);
 		
-		textField = new JTextField();
-		textField.setBounds(213, 144, 228, 43);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtTK = new JTextField();
+		txtTK.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtTK.setBounds(213, 144, 228, 43);
+		contentPane.add(txtTK);
+		txtTK.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(213, 207, 228, 43);
-		contentPane.add(textField_1);
+		txtMK = new JTextField();
+		txtMK.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		txtMK.setColumns(10);
+		txtMK.setBounds(213, 207, 228, 43);
+		contentPane.add(txtMK);
 		
-		JButton btnNewButton = new JButton("Đăng nhập");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnNewButton.setBounds(184, 283, 167, 43);
-		contentPane.add(btnNewButton);
+		JButton btnLogin = new JButton("Đăng nhập");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(txtTK.getText().isEmpty() || txtMK.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(contentPane, "Bạn chưa nhập tài khoản hoặc mật khẩu");
+				}else if(txtTK.getText().equals("Admin") && txtMK.getText().equals("123")){
+					login();				
+				}else {
+					JOptionPane.showMessageDialog(contentPane, "Tài khoản hoặc mật khẩu không đúng");
+					txtMK.setText("");
+					txtTK.setText("");
+				}
+			}
+		});
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnLogin.setBounds(184, 283, 167, 43);
+		contentPane.add(btnLogin);
 	}
 }

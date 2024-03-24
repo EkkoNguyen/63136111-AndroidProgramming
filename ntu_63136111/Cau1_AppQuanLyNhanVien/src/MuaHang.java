@@ -74,21 +74,18 @@ public class MuaHang extends JFrame {
 		
 	}
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MuaHang frame = new MuaHang();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	public void logOut() {
 		new Login().setVisible(true);
+		this.setVisible(false);
+	}
+	
+	public void sanPham() {
+		new Items().setVisible(true);
+		this.setVisible(false);
+	}
+	
+	public void xemHoaDon() {
+		new DanhSachHoaDon().setVisible(true);
 		this.setVisible(false);
 	}
 	
@@ -298,18 +295,25 @@ public class MuaHang extends JFrame {
 		panel.add(lblLogOut);
 		
 		JLabel lblNewLabel_2 = new JLabel("Sản phẩm");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				sanPham();
+			}
+		});
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblNewLabel_2.setBounds(10, 44, 129, 40);
 		panel.add(lblNewLabel_2);
 		
-		JLabel lblMuaHng_1 = new JLabel("Mua hàng");
-		lblMuaHng_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblMuaHng_1.setBounds(10, 106, 129, 40);
-		panel.add(lblMuaHng_1);
-		
-		JLabel lblXemHan = new JLabel("Xem hóa đơn");
-		lblXemHan.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblXemHan.setBounds(10, 175, 129, 40);
-		panel.add(lblXemHan);
+		JLabel lblXemHan_1 = new JLabel("Xem hóa đơn");
+		lblXemHan_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				xemHoaDon();
+			}
+		});
+		lblXemHan_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblXemHan_1.setBounds(10, 104, 129, 40);
+		panel.add(lblXemHan_1);
 	}
 }
