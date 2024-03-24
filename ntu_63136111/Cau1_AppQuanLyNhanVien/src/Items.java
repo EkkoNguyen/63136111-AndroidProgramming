@@ -38,6 +38,7 @@ public class Items extends JFrame {
 	private JTextField txtGia;
 	private JTable ListSanPham;
 	private JComboBox cbFilter;
+	
 	Connection con = null;
 	PreparedStatement St = null, St1 = null;
 	ResultSet Rs = null, Rs1 = null;
