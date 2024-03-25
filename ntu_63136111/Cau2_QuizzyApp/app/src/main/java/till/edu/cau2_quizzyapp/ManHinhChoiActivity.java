@@ -28,7 +28,7 @@ public class ManHinhChoiActivity extends AppCompatActivity {
     int index = 0;
     TextView cardQuestion, optionA, optionB,optionC, optionD;
     CardView cardA, cardB, cardC, cardD;
-    int chonDung = 0, chonSai = 0;
+    int soDapAnDung = 0, soDapAnSai = 0;
     LinearLayout btnNext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,12 +97,12 @@ public class ManHinhChoiActivity extends AppCompatActivity {
         btnNext = findViewById(R.id.btn_next);
     }
 
-    public void demDapAnDung(CardView cardView){
+    public void chonDapAnDung(CardView cardView){
         cardView.setBackgroundColor(getResources().getColor(R.color.green));
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chonDung++;
+                soDapAnDung++;
                 if(index < danhSachCauHoi.size() - 1){
                     index++;
                     modelClass = danhSachCauHoi.get(index);
@@ -118,12 +118,12 @@ public class ManHinhChoiActivity extends AppCompatActivity {
         });
     }
 
-    public void demDapAnSai(CardView cardView){
+    public void chonDapAnSai(CardView cardView){
         cardView.setBackgroundColor(getResources().getColor(R.color.red));
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chonSai++;
+                soDapAnSai++;
                 if(index < danhSachCauHoi.size() - 1){
                     index++;
                     modelClass = danhSachCauHoi.get(index);
@@ -141,6 +141,8 @@ public class ManHinhChoiActivity extends AppCompatActivity {
 
     private void Win() {
     Intent intent = new Intent(ManHinhChoiActivity.this, WinActivity.class);
+    intent.putExtra("dung",soDapAnDung);
+    intent.putExtra("Sai",soDapAnSai);
     startActivity(intent);
     }
 
@@ -166,40 +168,36 @@ public class ManHinhChoiActivity extends AppCompatActivity {
         disableAllBtn();
         btnNext.setClickable(true);
         if(modelClass.getDapAnA().equals(modelClass.getDapAnDung())){
-            cardA.setBackgroundColor(getResources().getColor(R.color.green));
-            demDapAnDung(cardA);
+            chonDapAnDung(cardA);
         }else{
-            demDapAnSai(cardA);
+            chonDapAnSai(cardA);
         }
     }
     public void optionBClick(View v){
         disableAllBtn();
         btnNext.setClickable(true);
         if(modelClass.getDapAnB().equals(modelClass.getDapAnDung())){
-            cardB.setBackgroundColor(getResources().getColor(R.color.green));
-            demDapAnDung(cardB);
+            chonDapAnDung(cardB);
         }else{
-            demDapAnSai(cardB);
+            chonDapAnSai(cardB);
         }
     }
     public void optionCClick(View v){
         disableAllBtn();
         btnNext.setClickable(true);
         if(modelClass.getDapAnC().equals(modelClass.getDapAnDung())){
-            cardC.setBackgroundColor(getResources().getColor(R.color.green));
-            demDapAnDung(cardC);
+            chonDapAnDung(cardC);
         }else{
-            demDapAnSai(cardC);
+            chonDapAnSai(cardC);
         }
     }
     public void optionDClick(View v){
         disableAllBtn();
         btnNext.setClickable(true);
         if(modelClass.getDapAnD().equals(modelClass.getDapAnDung())){
-            cardD.setBackgroundColor(getResources().getColor(R.color.green));
-            demDapAnDung(cardD);
+            chonDapAnDung(cardD);
         }else{
-            demDapAnSai(cardD);
+            chonDapAnSai(cardD);
         }
     }
 }
