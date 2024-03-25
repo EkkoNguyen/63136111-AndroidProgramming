@@ -5,7 +5,6 @@ import static till.edu.cau2_quizzyapp.MainActivity.list;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,14 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 public class ManHinhChoiActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
     int time = 20;
     ProgressBar progressBar;
-    ArrayList<ModelClass> danhSachCauHoi;
     ModelClass modelClass;
     int index = 0;
     TextView cardQuestion, optionA, optionB,optionC, optionD;
@@ -38,9 +35,8 @@ public class ManHinhChoiActivity extends AppCompatActivity {
 
         TimDieuKhien();
 
-        danhSachCauHoi = list;
-        Collections.shuffle(danhSachCauHoi);
-        modelClass = danhSachCauHoi.get(index);
+        Collections.shuffle(list);
+        modelClass = list.get(index);
 
         resetColorBtn();
 
@@ -105,9 +101,9 @@ public class ManHinhChoiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soDapAnDung++;
-                if(index < danhSachCauHoi.size() - 1){
+                if(index < list.size() - 1){
                     index++;
-                    modelClass = danhSachCauHoi.get(index);
+                    modelClass = list.get(index);
                     resetColorBtn();
                     enableAllBtn();
                     caiDatCauHoi();
@@ -126,9 +122,9 @@ public class ManHinhChoiActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 soDapAnSai++;
-                if(index < danhSachCauHoi.size() - 1){
+                if(index < list.size() - 1){
                     index++;
-                    modelClass = danhSachCauHoi.get(index);
+                    modelClass = list.get(index);
                     resetColorBtn();
                     enableAllBtn();
                     caiDatCauHoi();

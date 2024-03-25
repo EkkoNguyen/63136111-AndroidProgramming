@@ -29,7 +29,7 @@ public class WinActivity extends AppCompatActivity {
         soDapAndung = getIntent().getIntExtra("dung",0);
         soDapAnSai = getIntent().getIntExtra("sai",0);
         circularprogressbar.setProgress(soDapAndung);
-        ketQua.setText(soDapAndung+"/15");
+        ketQua.setText(soDapAndung+"/8");
     }
     public void onClickBtnChoiLai(){
         btnChoiLai.setOnClickListener(new View.OnClickListener() {
