@@ -1,5 +1,7 @@
 package till.edu.cau2_quizzyapp;
 
+import static till.edu.cau2_quizzyapp.MainActivity.list;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,16 +28,30 @@ public class ManHinhChoiActivity extends AppCompatActivity {
     int index = 0;
     TextView cardQuestion, optionA, optionB,optionC, optionD;
     CardView cardA, cardB, cardC, cardD;
+    int chonDung = 0, chonSai = 0;
+    LinearLayout btnNext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_choi);
+
         TimDieuKhien();
-        this.danhSachCauHoi = danhSachCauHoi;
+
+        danhSachCauHoi = list;
         Collections.shuffle(danhSachCauHoi);
         modelClass = danhSachCauHoi.get(index);
+
+        resetColorBtn();
+
+        btnNext.setClickable(false);
+
+        startTimer(20);
+
         caiDatCauHoi();
-        countDownTimer = new CountDownTimer(20000, 1000) {
+    }
+    public void startTimer(int i){
+        time = i;
+        countDownTimer = new CountDownTimer(time * 1000, 1000) {
             @Override
             public void onTick(long l) {
                 time = time - 1;
@@ -48,7 +65,7 @@ public class ManHinhChoiActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.man_hinh_overtime_dialog);
                 dialog.findViewById(R.id.btn_choiLai).setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View v) {
                         Intent intent = new Intent(ManHinhChoiActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
@@ -57,14 +74,12 @@ public class ManHinhChoiActivity extends AppCompatActivity {
             }
         }.start();
     }
-
     private void caiDatCauHoi() {
         cardQuestion.setText(modelClass.getCauhoi());
-        optionA.setText(modelClass.dapAnA);
-        optionB.setText(modelClass.dapAnB);
-        optionC.setText(modelClass.dapAnC);
-        optionD.setText(modelClass.dapAnD);
-
+        optionA.setText(modelClass.getDapAnA());
+        optionB.setText(modelClass.getDapAnB());
+        optionC.setText(modelClass.getDapAnC());
+        optionD.setText(modelClass.getDapAnD());
     }
 
     private void TimDieuKhien() {
@@ -79,5 +94,112 @@ public class ManHinhChoiActivity extends AppCompatActivity {
         cardB = findViewById(R.id.cardB);
         cardC = findViewById(R.id.cardC);
         cardD = findViewById(R.id.cardD);
+        btnNext = findViewById(R.id.btn_next);
+    }
+
+    public void demDapAnDung(CardView cardView){
+        cardView.setBackgroundColor(getResources().getColor(R.color.green));
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chonDung++;
+                if(index < danhSachCauHoi.size() - 1){
+                    index++;
+                    modelClass = danhSachCauHoi.get(index);
+                    resetColorBtn();
+                    enableAllBtn();
+                    caiDatCauHoi();
+                    countDownTimer.cancel();
+                    startTimer(20);
+                }else {
+                    Win();
+                }
+            }
+        });
+    }
+
+    public void demDapAnSai(CardView cardView){
+        cardView.setBackgroundColor(getResources().getColor(R.color.red));
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chonSai++;
+                if(index < danhSachCauHoi.size() - 1){
+                    index++;
+                    modelClass = danhSachCauHoi.get(index);
+                    resetColorBtn();
+                    enableAllBtn();
+                    caiDatCauHoi();
+                    countDownTimer.cancel();
+                    startTimer(20);
+                }else {
+                    Win();
+                }
+            }
+        });
+    }
+
+    private void Win() {
+    Intent intent = new Intent(ManHinhChoiActivity.this, WinActivity.class);
+    startActivity(intent);
+    }
+
+    public void enableAllBtn(){
+        cardA.setClickable(true);
+        cardB.setClickable(true);
+        cardC.setClickable(true);
+        cardD.setClickable(true);
+    }
+    public void disableAllBtn(){
+        cardA.setClickable(false);
+        cardB.setClickable(false);
+        cardC.setClickable(false);
+        cardD.setClickable(false);
+    }
+    public void resetColorBtn(){
+        cardA.setBackgroundColor(getResources().getColor(R.color.white));
+        cardB.setBackgroundColor(getResources().getColor(R.color.white));
+        cardC.setBackgroundColor(getResources().getColor(R.color.white));
+        cardD.setBackgroundColor(getResources().getColor(R.color.white));
+    }
+    public void optionAClick(View v){
+        disableAllBtn();
+        btnNext.setClickable(true);
+        if(modelClass.getDapAnA().equals(modelClass.getDapAnDung())){
+            cardA.setBackgroundColor(getResources().getColor(R.color.green));
+            demDapAnDung(cardA);
+        }else{
+            demDapAnSai(cardA);
+        }
+    }
+    public void optionBClick(View v){
+        disableAllBtn();
+        btnNext.setClickable(true);
+        if(modelClass.getDapAnB().equals(modelClass.getDapAnDung())){
+            cardB.setBackgroundColor(getResources().getColor(R.color.green));
+            demDapAnDung(cardB);
+        }else{
+            demDapAnSai(cardB);
+        }
+    }
+    public void optionCClick(View v){
+        disableAllBtn();
+        btnNext.setClickable(true);
+        if(modelClass.getDapAnC().equals(modelClass.getDapAnDung())){
+            cardC.setBackgroundColor(getResources().getColor(R.color.green));
+            demDapAnDung(cardC);
+        }else{
+            demDapAnSai(cardC);
+        }
+    }
+    public void optionDClick(View v){
+        disableAllBtn();
+        btnNext.setClickable(true);
+        if(modelClass.getDapAnD().equals(modelClass.getDapAnDung())){
+            cardD.setBackgroundColor(getResources().getColor(R.color.green));
+            demDapAnDung(cardD);
+        }else{
+            demDapAnSai(cardD);
+        }
     }
 }

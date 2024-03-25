@@ -53,7 +53,6 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_30sdp"
         android:background="@color/white">
 
         <TextView
@@ -67,6 +66,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:onClick="optionAClick"
         android:id="@+id/cardA"
         app:cardCornerRadius="@dimen/_5sdp"
         android:layout_width="match_parent"
@@ -75,7 +75,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:background="@color/white">
 
         <TextView
@@ -88,6 +88,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:onClick="optionBClick"
         android:id="@+id/cardB"
         app:cardCornerRadius="@dimen/_5sdp"
         android:layout_width="match_parent"
@@ -96,7 +97,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:background="@color/white">
 
         <TextView
@@ -109,6 +110,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:onClick="optionCClick"
         android:id="@+id/cardC"
         app:cardCornerRadius="@dimen/_5sdp"
         android:layout_width="match_parent"
@@ -117,7 +119,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:background="@color/white">
 
         <TextView
@@ -130,6 +132,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:onClick="optionDClick"
         android:id="@+id/cardD"
         app:cardCornerRadius="@dimen/_5sdp"
         android:layout_width="match_parent"
@@ -138,7 +141,7 @@
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:background="@color/white">
 
         <TextView
@@ -152,13 +155,14 @@
 
 
     <LinearLayout
+        android:id="@+id/btn_next"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:background="@drawable/next_btn_shape"
         android:layout_marginStart="@dimen/_35sdp"
         android:layout_marginRight="@dimen/_35sdp"
         android:layout_marginLeft="@dimen/_35sdp"
-        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_35sdp"
         android:gravity="center">
 
