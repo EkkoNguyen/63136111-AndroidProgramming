@@ -34,7 +34,16 @@
             android:layout_marginRight="@dimen/_10sdp"/>
 
     </RelativeLayout>
-
+    <ProgressBar
+        android:id="@+id/quiz_timer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:indeterminate="false"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progress="10"
+        android:max="20"
+        android:progressTint="@color/black"
+        />
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="@dimen/_10sdp"
         android:layout_width="match_parent"
