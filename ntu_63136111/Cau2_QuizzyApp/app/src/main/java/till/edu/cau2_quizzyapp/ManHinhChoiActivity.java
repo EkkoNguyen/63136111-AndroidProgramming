@@ -30,6 +30,7 @@ public class ManHinhChoiActivity extends AppCompatActivity {
     CardView cardA, cardB, cardC, cardD;
     int soDapAnDung = 0, soDapAnSai = 0;
     LinearLayout btnNext;
+    TextView btnExit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +95,7 @@ public class ManHinhChoiActivity extends AppCompatActivity {
         cardB = findViewById(R.id.cardB);
         cardC = findViewById(R.id.cardC);
         cardD = findViewById(R.id.cardD);
+        btnExit = findViewById(R.id.exit);
         btnNext = findViewById(R.id.btn_next);
     }
 
@@ -139,10 +141,19 @@ public class ManHinhChoiActivity extends AppCompatActivity {
         });
     }
 
+    public void onClickExit(){
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
     private void Win() {
     Intent intent = new Intent(ManHinhChoiActivity.this, WinActivity.class);
     intent.putExtra("dung",soDapAnDung);
-    intent.putExtra("Sai",soDapAnSai);
+    intent.putExtra("sai",soDapAnSai);
     startActivity(intent);
     }
 

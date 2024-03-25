@@ -13,18 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp">
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:background="@drawable/ic_back"
-            android:layout_centerVertical="true"
-            android:backgroundTint="@color/black"
-            app:tint="@color/black"
-            android:layout_marginLeft="@dimen/_10sdp"/>
-
         <TextView
             android:id="@+id/exit"
+            android:onClick="onClickExit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Exit"
