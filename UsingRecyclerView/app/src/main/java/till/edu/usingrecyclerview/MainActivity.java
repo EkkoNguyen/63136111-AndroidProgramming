@@ -1,6 +1,7 @@
 package till.edu.usingrecyclerview;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,8 +22,12 @@ public class MainActivity extends AppCompatActivity {
         //4:
         recyclerViewLandScape = findViewById(R.id.recyclerLand);
         //5:
-        RecyclerView.LayoutManager layoutLinear = new LinearLayoutManager(this);
-        recyclerViewLandScape.setLayoutManager(layoutLinear);
+//        RecyclerView.LayoutManager layoutLinear = new LinearLayoutManager(this);
+//        recyclerViewLandScape.setLayoutManager(layoutLinear);
+//        RecyclerView.LayoutManager layoutLinearHorizonal = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
+//        recyclerViewLandScape.setLayoutManager(layoutLinearHorizonal);
+        RecyclerView.LayoutManager layoutGrid = new GridLayoutManager(this, 2);
+        recyclerViewLandScape.setLayoutManager(layoutGrid);
         //6:
         landScapeAdapter = new LandScapeAdapter(this, recyclerViewData);
         //7:
@@ -31,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<LandScape> getRecyclerViewData() {
         ArrayList<LandScape> dsDuLieu = new ArrayList<>();
+        dsDuLieu.add(new LandScape("thaphanoi", "Cột cờ Hà Nội"));
+        dsDuLieu.add(new LandScape("effel", "Tháp Effel"));
+        dsDuLieu.add(new LandScape("buckingham", "Cung điện Buckinghham"));
         dsDuLieu.add(new LandScape("thaphanoi", "Cột cờ Hà Nội"));
         dsDuLieu.add(new LandScape("effel", "Tháp Effel"));
         dsDuLieu.add(new LandScape("buckingham", "Cung điện Buckinghham"));
