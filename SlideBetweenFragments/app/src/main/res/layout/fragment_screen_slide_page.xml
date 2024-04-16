@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView style="?android:textAppearanceMedium"
+        android:padding="16dp"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis neque vitae nisi consequat ultrices. Duis eu ante sit amet urna luctus placerat. Integer vitae orci non nisi commodo semper. Phasellus vitae sapien nec nisi rutrum fermentum. Nullam viverra, nisl ac commodo feugiat, turpis enim tempus libero, sed lacinia ipsum nulla at lorem. In hac habitasse platea dictumst. Sed ultrices, elit et ultricies tempus, massa mauris faucibus nunc, non facilisis est quam eget libero. Nulla facilisi. Donec volutpat sapien ut purus bibendum, in tincidunt lacus convallis. Fusce ut efficitur felis. Nulla facilisi. Sed euismod urna in mauris facilisis vehicula. Proin in semper velit, non faucibus eros. Nulla facilisi. Aenean nec ultrices sapien, a consequat ligula. Donec consectetur enim nisi, et lacinia arcu ultrices vitae. Vivamus non nisl vehicula, aliquet velit vitae, efficitur justo.
+" />
+</ScrollView>
